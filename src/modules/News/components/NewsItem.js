@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import parse from "html-react-parser";
 
 const Story = styled.article`
   font-size: 14px;
@@ -38,6 +39,8 @@ const Link = styled.a`
   word-break: break-all;
 `;
 
+const Body = styled.section``;
+
 const NewsItem = ({ news }) => {
   return (
     <Story>
@@ -54,6 +57,7 @@ const NewsItem = ({ news }) => {
           </Link>
         )}
       </Header>
+      <Body>{parse(news.storyText || "")}</Body>
     </Story>
   );
 };

@@ -6,6 +6,7 @@ import {
 import { API_URL } from "../../../helpers/contants";
 import { normalizeNewsList } from "./normalizer";
 import axios from "axios";
+import { camelizeKeys } from "humps";
 
 export const searchNews = (page = 0, query) => {
   return async (dispatch) => {
@@ -20,7 +21,7 @@ export const searchNews = (page = 0, query) => {
 
       dispatch({
         type: SEARCH_NEWS_SUCCESS,
-        payload: normalizeNewsList(data && data.hits),
+        payload: normalizeNewsList(data && camelizeKeys(data.hits)),
       });
     } catch (error) {
       dispatch({

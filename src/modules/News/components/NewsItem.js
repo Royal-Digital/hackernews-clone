@@ -2,9 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import parse from "html-react-parser";
+import { formatDistance } from "date-fns";
 
 const Story = styled.article`
-  font-size: 14px;
+  font-size: 16px;
   padding: 0 16px;
   min-height: 40px;
   -ms-flex-wrap: wrap;
@@ -38,10 +39,31 @@ const Link = styled.a`
   font-size: 13px;
   word-break: break-all;
 `;
+const Links = styled.div`
+  color: #696969;
+  font-size: 10.6667px;
+`;
 
-const Body = styled.section``;
+const Comment = styled.section`
+  padding: 8px 0;
+  color: #000;
+  font-size: 12px;
+  width: 100%;
+  line-height: normal;
+  font-style: normal;
+  -webkit-font-feature-settings: normal;
+  font-feature-settings: normal;
+  font-variant-caps: normal;
+  font-variant-east-asian: normal;
+  -webkit-font-variant-ligatures: normal;
+  font-variant-ligatures: normal;
+  font-variant-numeric: normal;
+  font-weight: 400;
+`;
 
 const NewsItem = ({ news }) => {
+  console.log(news);
+
   return (
     <Story>
       <Header>
@@ -57,7 +79,20 @@ const NewsItem = ({ news }) => {
           </Link>
         )}
       </Header>
-      <Body>{parse(news.storyText || "")}</Body>
+      <Links>
+        {news.points && <span>{news.points} points, | </span>}
+        {news.author && <span>{news.author} | </span>}
+        {news.createdAt && (
+          <span>
+            {formatDistance(new Date(news.createdAt), new Date(), {
+              addSuffix: true,
+            })}{" "}
+            |{" "}
+          </span>
+        )}
+        {news.numComments && <span>{news.numComments} comments</span>}
+      </Links>
+      <Comment>{parse(news.storyText || "")}</Comment>
     </Story>
   );
 };

@@ -15,6 +15,9 @@ const Wrapper = styled.header`
   justify-content: space-between;
   box-sizing: boder-box;
   margin-bottom: 10px;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 `;
 const LogoLink = styled.a`
   @media ${device.tablet} {

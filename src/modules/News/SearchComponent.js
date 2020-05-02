@@ -21,7 +21,9 @@ export const SearchComponent = ({
   return (
     <Container>
       <Header searchNews={searchNews} />
-      <NewsList searching={searchingNews} data={searchResults} />
+      <div id="newsList" style={{ paddingTop: 60 }}>
+        <NewsList searching={searchingNews} data={searchResults} />
+      </div>
     </Container>
   );
 };

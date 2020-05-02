@@ -5,6 +5,9 @@ import NewsItem from "./NewsItem";
 const NewsList = ({ data, searching }) => {
   return (
     <Fragment>
+      {searching && (
+        <div style={{ textAlign: "center", marginBottom: 10 }}>loading...</div>
+      )}
       {data &&
         data
           .filter((newsItem) => newsItem.title)

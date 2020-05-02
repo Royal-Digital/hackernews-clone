@@ -42,10 +42,9 @@ const LogoImage = styled.img`
 export const Header = ({ searchNews }) => {
   const [query, setQuery] = useState("");
   useEffect(() => {
-    if (query) {
-      searchNews(query);
-    }
-  }, [query]);
+    searchNews(query);
+  }, [query, searchNews]);
+
   return (
     <Wrapper>
       <LogoLink href="/">

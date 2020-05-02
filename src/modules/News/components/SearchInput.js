@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import SearchIcon from "../../../images/SearchIcon.svg";
-import CloseIcon from "../../../images/CloseIcon.svg";
 import PropTypes from "prop-types";
 import { device } from "../../../helpers/contants";
 
@@ -62,7 +61,7 @@ const SearchInputImage = styled.img`
   padding-right: 1rem;
 `;
 
-function SearchInput({ handleOnClose, handleChange, value, ...props }) {
+function SearchInput({ handleChange, value, ...props }) {
   return (
     <>
       <ProductSearchInputWrapper>
@@ -73,19 +72,15 @@ function SearchInput({ handleOnClose, handleChange, value, ...props }) {
             {...props}
             value={value}
             onChange={handleChange}
-            on
+            onAbort={handleChange}
           />
         </InputWrapper>
-        {/* {value && value.length > 0 && (
-          <CloseImage onClick={handleOnClose} src={CloseIcon} alt="Close" />
-        )} */}
       </ProductSearchInputWrapper>
     </>
   );
 }
 
 SearchInput.propTypes = {
-  handleOnClose: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   value: PropTypes.string,
 };

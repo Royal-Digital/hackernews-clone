@@ -88,7 +88,11 @@ const NewsItem = ({ news }) => {
       <Links>
         {news.points && (
           <span>
-            <Link className="link" href="">
+            <Link
+              target="_blank"
+              className="link"
+              href={`https://news.ycombinator.com/item?id=${news.objectID}`}
+            >
               {news.points} points
             </Link>
             , |{" "}
@@ -96,7 +100,11 @@ const NewsItem = ({ news }) => {
         )}
         {news.author && (
           <span>
-            <Link className="link" href="">
+            <Link
+              target="_blank"
+              className="link"
+              href={`https://news.ycombinator.com/user?id=${news.author}`}
+            >
               {news.author}
             </Link>{" "}
             |{" "}
@@ -104,7 +112,11 @@ const NewsItem = ({ news }) => {
         )}
         {news.createdAt && (
           <span>
-            <Link className="link" href="">
+            <Link
+              target="_blank"
+              className="link"
+              href={`https://news.ycombinator.com/item?id=${news.objectID}`}
+            >
               {formatDistance(new Date(news.createdAt), new Date(), {
                 addSuffix: true,
               })}
@@ -113,7 +125,11 @@ const NewsItem = ({ news }) => {
           </span>
         )}
         <span>
-          <Link className="link" href="">
+          <Link
+            target="_blank"
+            className="link"
+            href={`https://news.ycombinator.com/item?id=${news.objectID}`}
+          >
             {news.numComments} comments
           </Link>
         </span>

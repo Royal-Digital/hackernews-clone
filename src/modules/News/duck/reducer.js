@@ -21,15 +21,33 @@ const contactReducer = (state = initialState, action) => {
       return {
         ...state,
         byId: {
+          ...(action &&
+          action.meta &&
+          action.meta.page > state.meta &&
+          state.meta.page
+            ? state.byId
+            : {}),
           ...(action.payload &&
             action.payload.entities &&
             action.payload.entities.news),
         },
         searching: false,
         allIds: uniq([
+          ...(action &&
+          action.meta &&
+          action.meta.page > state.meta &&
+          state.meta.page
+            ? state.allIds
+            : []),
           ...(action.payload && action.payload.result),
-          ...state.allIds,
+          // ...(action &&
+          //   action.meta &&
+          //   action.meta.page > state.meta &&
+          //   state.meta.page &&
+          //   state.allIds),
+          // ...state.allIds,
         ]),
+        meta: action.meta,
       };
     case SEARCH_NEWS_FAILURE:
       return {

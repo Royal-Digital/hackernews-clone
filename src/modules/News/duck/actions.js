@@ -18,10 +18,11 @@ export const searchNews = (query, page = 0) => {
           query ? `&query=${query}` : ""
         }`
       );
-
+      const { hits, ...rest } = data;
       dispatch({
         type: SEARCH_NEWS_SUCCESS,
-        payload: normalizeNewsList(data && camelizeKeys(data.hits)),
+        payload: normalizeNewsList(data && camelizeKeys(hits)),
+        meta: rest,
       });
     } catch (error) {
       dispatch({

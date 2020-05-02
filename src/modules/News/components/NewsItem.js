@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 import { formatDistance } from "date-fns";
 
 const Story = styled.article`
-  font-size: 16px;
+  font-size: 14px;
   padding: 0 16px;
   min-height: 40px;
   -ms-flex-wrap: wrap;

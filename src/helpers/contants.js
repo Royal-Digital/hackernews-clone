@@ -1,4 +1,4 @@
-export const API_URL = "http://hn.algolia.com/api/v1";
+export const API_URL = "https://hn.algolia.com/api/v1";
 
 const size = {
   mobileS: "320px",

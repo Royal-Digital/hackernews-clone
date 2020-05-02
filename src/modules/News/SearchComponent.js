@@ -16,12 +16,11 @@ export const SearchComponent = ({
 }) => {
   useEffect(() => {
     searchNews();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [searchNews]);
 
   return (
     <Container>
-      <Header />
+      <Header searchNews={searchNews} />
       <NewsList searching={searchingNews} data={searchResults} />
     </Container>
   );

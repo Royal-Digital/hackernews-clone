@@ -8,7 +8,7 @@ import { normalizeNewsList } from "./normalizer";
 import axios from "axios";
 import { camelizeKeys } from "humps";
 
-export const searchNews = (page = 0, query) => {
+export const searchNews = (query, page = 0) => {
   return async (dispatch) => {
     dispatch({ type: SEARCH_NEWS_REQUEST });
 

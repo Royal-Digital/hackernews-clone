@@ -21,7 +21,6 @@ const contactReducer = (state = initialState, action) => {
       return {
         ...state,
         byId: {
-          ...state.byId,
           ...(action.payload &&
             action.payload.entities &&
             action.payload.entities.news),

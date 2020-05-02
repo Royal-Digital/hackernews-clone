@@ -33,17 +33,25 @@ const Title = styled.a`
     margin-right: 4px;
   }
 `;
-const Link = styled.a`
+const TitleLink = styled.a`
   text-decoration: none;
   color: #828282;
   font-size: 13px;
   word-break: break-all;
 `;
 const Links = styled.div`
-  color: #696969;
   font-size: 10.6667px;
+  color: #696969;
+  & a {
+    color: #696969;
+  }
 `;
-
+const Link = styled.a`
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 const Comment = styled.section`
   padding: 8px 0;
   color: #000;
@@ -62,8 +70,6 @@ const Comment = styled.section`
 `;
 
 const NewsItem = ({ news }) => {
-  console.log(news);
-
   return (
     <Story>
       <Header>
@@ -74,23 +80,43 @@ const NewsItem = ({ news }) => {
           {news.title}
         </Title>
         {news.url && (
-          <Link target="_blank" href={news.url}>
+          <TitleLink target="_blank" href={news.url}>
             ({news.url})
-          </Link>
+          </TitleLink>
         )}
       </Header>
       <Links>
-        {news.points && <span>{news.points} points, | </span>}
-        {news.author && <span>{news.author} | </span>}
-        {news.createdAt && (
+        {news.points && (
           <span>
-            {formatDistance(new Date(news.createdAt), new Date(), {
-              addSuffix: true,
-            })}{" "}
+            <Link className="link" href="">
+              {news.points} points
+            </Link>
+            , |{" "}
+          </span>
+        )}
+        {news.author && (
+          <span>
+            <Link className="link" href="">
+              {news.author}
+            </Link>{" "}
             |{" "}
           </span>
         )}
-        {news.numComments && <span>{news.numComments} comments</span>}
+        {news.createdAt && (
+          <span>
+            <Link className="link" href="">
+              {formatDistance(new Date(news.createdAt), new Date(), {
+                addSuffix: true,
+              })}
+            </Link>{" "}
+            |{" "}
+          </span>
+        )}
+        <span>
+          <Link className="link" href="">
+            {news.numComments} comments
+          </Link>
+        </span>
       </Links>
       <Comment>{parse(news.storyText || "")}</Comment>
     </Story>

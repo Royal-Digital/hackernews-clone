@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Logo from "../../../images/logo-hn-search.png";
+import SearchInput from "./SearchInput";
+import { device } from "../../../helpers/contants";
+import PropTypes from "prop-types";
 
 const Wrapper = styled.header`
-  height: 56px;
+  height: 48px;
   display: flex;
   align-items: center;
   background: #ff742b;
@@ -14,25 +17,38 @@ const Wrapper = styled.header`
   margin-bottom: 10px;
 `;
 const LogoLink = styled.a`
-  flex: 1 0 180px;
-  max-width: 180px;
+  @media ${device.tablet} {
+    flex: 1 0 180px;
+    max-width: 180px;
+  }
   display: flex;
   align-items: center;
+  text-decoration: none;
 `;
 
 const LogoLabel = styled.div`
   color: #000;
   font-size: 18px;
   line-height: 1;
+  display: none;
+  @media ${device.tablet} {
+    display: block;
+  }
 `;
 const LogoImage = styled.img`
   width: 48px;
   margin-right: 8px;
 `;
-export const Header = () => {
+export const Header = ({ searchNews }) => {
+  const [query, setQuery] = useState("");
+  useEffect(() => {
+    if (query) {
+      searchNews(query);
+    }
+  }, [query]);
   return (
     <Wrapper>
-      <LogoLink>
+      <LogoLink href="/">
         <LogoImage src={Logo} alt="Hacker News"></LogoImage>
         <LogoLabel>
           Search
@@ -40,8 +56,15 @@ export const Header = () => {
           Hacker News
         </LogoLabel>
       </LogoLink>
+      <SearchInput
+        value={query}
+        handleChange={(e) => setQuery(e.target.value)}
+        placeholder="Search stories by title, url or author"
+      />
     </Wrapper>
   );
 };
-
+Header.propTypes = {
+  searchNews: PropTypes.func.isRequired,
+};
 export default Header;

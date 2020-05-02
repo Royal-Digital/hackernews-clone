@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "date-fns": "^2.12.0",
+    "gh-pages": "^2.2.0",
     "html-react-parser": "^0.10.3",
     "humps": "^2.0.1",
     "normalizr": "^3.6.0",
@@ -20,11 +21,14 @@
     "reselect": "^4.0.0",
     "styled-components": "^5.1.0"
   },
+  "homepage": "http://jahlomp.github.io/hackernews-clone",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
